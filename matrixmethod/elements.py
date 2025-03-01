@@ -138,7 +138,7 @@ class Element:
         k[2, 4] = k[4, 2] = k[4, 5] = k[5, 4] = 6.0 * EI / L / L
         k[2, 2] = k[5, 5] = 4.0 * EI / L
         k[2, 5] = k[5, 2] = 2.0 * EI / L
-        #done
+        
         return np.matmul(np.matmul(self.Tt, k), self.T)
 
     def add_distributed_load(self, q):
@@ -157,7 +157,7 @@ class Element:
 
         self.local_element_load = [0.5 * q[0] * l, 0.5 * q[1] * l, -1.0 / 12.0 * q[1] * l * l, 0.5 * q[0] * l, 0.5 * q[1] * l, 1.0 / 12.0 * q[1] * l * l]
 
-        global_element_load  = np.matmul(self.Tt, np.array(local_element_load))
+        global_element_load  = np.matmul(self.Tt, np.array(self.local_element_load))
 
         self.nodes[0].add_load(global_element_load[0:3])
         self.nodes[1].add_load(global_element_load[3:6])
