@@ -138,7 +138,7 @@ class Element:
         k[2, 4] = k[4, 2] = k[4, 5] = k[5, 4] = 6.0 * EI / L / L
         k[2, 2] = k[5, 5] = 4.0 * EI / L
         k[2, 5] = k[5, 2] = 2.0 * EI / L
-        
+        #done
         return np.matmul(np.matmul(self.Tt, k), self.T)
 
     def add_distributed_load(self, q):
